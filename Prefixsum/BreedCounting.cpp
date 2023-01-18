@@ -1,5 +1,6 @@
 // http://www.usaco.org/index.php?page=viewproblem2&cpid=572
 #include <iostream> 
+
 using namespace std;
 
 int main(){
