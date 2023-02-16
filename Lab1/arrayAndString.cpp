@@ -83,7 +83,12 @@ void print2DArray(float A[][1000], int m, int n){
 }
 
 void rotate2DArray(float A[][1000], int m, int n){
-    
+    int B[100][100];
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++){
+            
+        }
+    }
 }
 
 void sum2DArray(float A[][1000], float B[][1000], float result[][1000], int m, int n){
