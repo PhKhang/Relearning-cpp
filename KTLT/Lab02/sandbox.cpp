@@ -7,7 +7,10 @@
 using namespace std;
 
 int main(){
-	cout << (toupper('é') == 'É') << endl;
-	cout << 'é' << " " << toupper('é') << " " << 'É' << endl;
-	cout << int(toupper('é')) << " " << int('É');
+	wstring a = L"abcdefg";
+	wstring b = L"Ábcf";
+	char c = tolower(int(b.at(0)));
+	cout << (a.find(b) != string::npos) << endl;
+	cout << tolower(L"É") << " " << "é" << endl;
+	
 }

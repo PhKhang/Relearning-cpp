@@ -32,9 +32,36 @@ string toLower(string a){
     return b;
 }
 
-void searchFor(vector<Player> players, string key, int group){
+vector<Player> searchFor(vector<Player> players, string key, int group){
+    vector<Player> ans;
+    switch (group)
+    {
+    case 1:
+        for (Player p:players)
+            if (p.pos == key){
+                ans.push_back(p);
+                // cout << p.name << " | " << p.pos << " | " << p.birthYear << " | " << p.team << " | " << p.club << endl;
+            }
+        break;
+        
+    case 5:
+        for (Player p:players)
+            if (p.club.find(toUpper(key)) != string::npos || p.club.find(toLower(key)) != string::npos){
+                ans.push_back(p);
+                // cout << p.name << " | " << p.pos << " | " << p.birthYear << " | " << p.team << " | " << p.club << endl;
+            }
+        break;
+    
+    default:
+        break;
+    }
+    return ans;
+            
+}
+
+void searchForBirthYear(vector<Player> players, int key){
     for (Player p:players)
-        if (p.name.find(toUpper(key)) != string::npos || p.name.find(toLower(key)) != string::npos){
+        if (p.birthYear == key){
             cout << p.name << " | " << p.pos << " | " << p.birthYear << " | " << p.team << " | " << p.club << endl;
         }
         
@@ -75,11 +102,16 @@ int main(){
         n++;
     }
     
-    // searchFor(players, "é", 1);
-    // wchar_t a = 'é';
-    cout << int(toupper(a)) << " " << int('É') << endl;
-    cout << int('ú') << " " << int('Ú') << endl;
-    cout << int('ã') << " " << int('Ã') << endl;
-    cout << int('a') << " " << int('A');
+    searchForBirthYear(players, 1994);
+    
+    vector<Player> search = searchFor(players, "Manchester United", 5);
+    for (auto i:search)
+        cout << i.name << " | " << i.pos << " | " << i.birthYear << " | " << i.team << " | " << i.club << endl;
+        
+    // search = searchFor(players, "Manchester City", 5);
+    // search = searchFor(search, "FW", 1);
+    // for (auto i:search)
+    //     cout << i.name << " | " << i.pos << " | " << i.birthYear << " | " << i.team << " | " << i.club << endl;
+     
     
 }
