@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -31,12 +32,12 @@ void timePassed(Time time){
     cout << "It's been " << totalSecond / 60 << " minutes and " << totalSecond % 60 << " seconds" << endl;
 }
 
-int earlierTime(Time a, Time b){
+bool operator<(Time a, Time b){
     int aSecond, bSecond;
     aSecond = a.hour * 3600 + a.minute * 60 + a.second;
     bSecond = b.hour * 3600 + b.minute * 60 + b.second;
 
-    return aSecond > bSecond;
+    return aSecond < bSecond;
 }
 
 
@@ -50,11 +51,58 @@ void inputFraction(Fraction *fract) {
     cin >> fract->denominator >> temp >> fract->numerator;
 }
 
+bool operator<(Fraction a, Fraction b){
+    return a.numerator * b.denominator < b.numerator * a.denominator;
+}
+
+bool operator>(Fraction a, Fraction b){
+    return a.numerator * b.denominator > b.numerator * a.denominator;
+}
+
+
+
+struct Point{
+    double x, y;
+};
+
+istream &operator>>(istream &cin, Point &point){
+    char temp;
+    cin >> point.x >> temp >> point.y;
+    
+    return cin;
+}
+
+ostream &operator<<(ostream &cout, Point a){
+    cout << a.x << ", " << a.y;
+    
+    return cout;
+}
+
+void quadrantDeter(Point a){
+    string ans = "";
+    ans += ((a.y >= 0)? "Up" : "Down");
+    ans += "-";
+    ans += ((a.x >= 0)? "Right" : "Left");
+    
+    cout << ans << endl;
+}
+
+double distant(Point a, Point b){
+    return sqrt( abs(a.x - b.x) * abs(a.x - b.x) +  abs(a.y - b.y) * abs(a.y - b.y));
+}
+
+Point findMid(Point a, Point b){
+    Point mid{ (a.x + b.x) / 2, (a.y + b.y) / 2};
+    return mid;
+}
+
 int main(){
-    Time a;
-    inputTime(&a);
-    outputTime(a);
-    timePassed(a);
+    Point a, b;
+    cin >> a >> b;
+    
+    cout << distant(a, b) << endl;
+    Point c = findMid(a, b);
+    cout << c << endl;
     
     return 0;
 }
