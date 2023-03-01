@@ -11,6 +11,10 @@ int main(){
 	wstring b = L"Ábcf";
 	char c = tolower(int(b.at(0)));
 	cout << (a.find(b) != string::npos) << endl;
+	wchar
+	
+	
+	
 	cout << tolower(L"É") << " " << "é" << endl;
 	
 }

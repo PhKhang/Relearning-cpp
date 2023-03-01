@@ -1,47 +1,47 @@
 #include <iostream>
-#include <vector>
-#include <cstring>
 
 using namespace std;
 
-bool compareString(string a, string b){
-    if (a.size() > b.size()){
-        return false;
+void inputArray(int* a, int& n) {
+    // take input from the user for size of the array
+    cout << "Enter size of array: ";
+    cin >> n;
+
+    // allocate memory to the array using new operator
+    int *b = new int[n];
+
+    // loop through the array and take input from the user
+    for (int i = 0; i < n; i++) {
+        cout << "Enter element " << i+1 << ": ";
+        cin >> *(b + i);
+        cout << "<" << *(b + i) << ">" << endl;
     }
     
-    if (a.compare(b) == 0)
-        return true;
-    
-    if (a.compare(b) == -1)
-        if (a.at(0) != b.at(0))
-            return false;
-        else
-            return true;
-    
-    return false;
+    a = b;
 }
 
-int main(){
-    vector<string> strs = {"aa", "ab"};
+int main() {
+    int* a, *c, *d;
+    int n = 69;
     
-    string prefix = strs[0];
+    c = new int[3];
+    *(c + 0) = 47;
+    *(c + 1) = 45;
+    *(c + 2) = 46;
+    for (int i = 0; i < 3; i++)
+        cout << *(c + i) << " ";
     
-    cout << prefix.compare("ab") << endl;
+    a = c;
     
-    for (int i = 1; i < strs.size(); i++){
-        
-        while (prefix.size() > 0 && !compareString(prefix, strs[i])){
-            prefix.resize(prefix.size() - 1);
-        }
-        
-        if (prefix.size() <= 0)
-            break;
+    inputArray(a, n);
+
+    // print the array
+    for (int i = 0; i < n; i++) {
+        cout << *(a + i) << " ";
     }
-    
-    if (prefix.size() > 0)
-        cout << prefix;
-    else
-        cout << "No matching prefix";
-    
+
+    // free the memory allocated to the array using delete operator
+    delete[] a;
+
     return 0;
 }

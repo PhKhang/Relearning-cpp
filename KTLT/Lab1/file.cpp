@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <algorithm>
 
 using namespace std;
 
@@ -54,7 +53,7 @@ int main(){
     string temp;
     int ans = 0;
     while (in2 >> temp){
-        temp = toLower(temp);
+        // temp = toLower(temp);
         if (temp == key)
             ans++;
     }
